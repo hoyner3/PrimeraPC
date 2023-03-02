@@ -1,6 +1,8 @@
-#Programa para ejecutar intrucciones.
+#Programa para ejecutar intrucciones.}
+#autor: Hoyner Zamora, Justin Martinez, Roosevelt Perez 
 def binario_a_decimal(binario):
     #print(type(binario))
+    binario = str(binario)
     decimal = 0
     for i in range(len(binario)):
         decimal += int(binario[i]) * 2 ** (len(binario) - i - 1)
@@ -71,7 +73,6 @@ def setInstruccion(instruccion,memoria,dir1,dir2,ac):
         dir = binario_a_decimal(dir)
         ac = ac * dir#se multiplica el valor de la memoria con el ac
         return ac
-
 def crear_diccionario_a_archivo(diccionario):
     archivo = open("archivo.txt","w")
     for clave,valor in diccionario.items():
@@ -101,7 +102,6 @@ def agregar_direcciones_a_memoria(memoria):
                 
             else:
                 print("Direccion invalida")
-
         validacion = False
         while validacion == False:
             print()
@@ -121,16 +121,12 @@ def agregar_direcciones_a_memoria(memoria):
                 else:
                     print("Direccion invalida")
                     print("Las direcciones de memoria deben estar entre 1250 y 1255")
-                
             else:
                 print("Dato invalido")
                 print("El dato debe tener 26 bits y empezar con 0")
-                
-        
         memoria[direccion] = dato 
         print("Direccion agregada con exito")
         print("Direccion: ",direccion,"Dato: ",dato)
-        
         return memoria
     else:
         print("Saliendo...")
@@ -144,7 +140,6 @@ def ejecutar_intrucciones(memoria,pc,ac,intruccion,dir1,dir2,numdato):
     for clave,valor in memoria.items():
         if clave[0:1] == "d":
             print("---------------------------------")
-            
             print(clave,valor)
             pc = clave
             print("CPU")
@@ -161,7 +156,6 @@ def ejecutar_intrucciones(memoria,pc,ac,intruccion,dir1,dir2,numdato):
             numdato2 = binario_a_decimal(dir2)
             #seleccionar la instruccion
             ac = setInstruccion(intruccion,memoria,dir1,dir2,ac)
-
             print("ac:",ac)
             print("instruccion:",intruccion)
             print("dir1:",dir1)
@@ -172,8 +166,6 @@ def ejecutar_intrucciones(memoria,pc,ac,intruccion,dir1,dir2,numdato):
             if intruccion == 6:
                 print("Dato:",numdato2)
                 print("Memoria:",memoria.get(str(numdato2)))
-
-            
             print("---------------------------------")
     
     return memoria,pc,ac,intruccion,dir1,dir2,numdato
@@ -181,7 +173,6 @@ def ejecutar_intrucciones(memoria,pc,ac,intruccion,dir1,dir2,numdato):
 # El main es la funcion principal del programa
 def main():
     print("Menu para ejecutar intrucciones")
-    
     # diccionario de memoria
     #global memoria 
     memoria = {"d-700":"00011001110010000000000000","d-701":"01001001110001010011100100","d-702":"00101001110010000000000000","d-703":"00011001110011100000000000","d-704":"01111001110001000000000000","d-705":"01101001110010010011100010","1250":"1100101","1251":"101000010010001000","1252":"1100101","1253":"11010111010","1254":"10000001110010000","1255":"11"}
